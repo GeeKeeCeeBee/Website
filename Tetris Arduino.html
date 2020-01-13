@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154911146-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-154911146-1');
+</script>
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GeeKee CeeBee - TETRIS using ARDUINO & MAX7219 8x8 LED MATRIX</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+     <link href="css/prism.css" rel="stylesheet" />
+
+  </head>
+<script data-ad-client="ca-pub-5014618487406640" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">GeeKee CeeBee</span>
+        <span class="d-none d-lg-block">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/logo.jpg" alt="">
+        </span>
+      </a>
+
+    </nav>
+
+    <div class="container-fluid p-0">
+
+      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <div class="my-auto">
+          <h1 class="mb-0">GeeKee
+            <span class="text-primary">CeeBee</span>
+          </h1>
+         <!--  <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
+            <a href="mailto:name@email.com">name@email.com</a>
+          </div>-->
+          <p class="mb-5">Welcome to GeeKee CeeBee's Page: House of Mechatronics & Controls Engineering Projects</p>
+
+           <h2 class="mb-5">TETRIS using ARDUINO & MAX7219 8x8 LED MATRIX</h2>
+
+          <br /><br /><br /><br />
+          <h3 class="mb-5">Step-by-step video</h3>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/QSIksPKndEs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          <br />
+          <br />
+          <br />
+          <br /><br /><br /><br /><br /><br /><br />
+          <h3 class="mb-5">Schematic</h3>
+
+          <img src="img/Tetris_Schematic.png" alt="">
+
+
+          <br /><br /><br /><br /><br /><br /><br />
+          <h3 class="mb-5">PROGRAM FLOWCHART</h3>
+
+          <img src="img/Tetris_flowchart.png" alt="">
+
+
+
+                <br /><br /><br /><br /><br /><br /><br /><br />
+
+          <h3 class="mb-5">Adding custom code to existing LedControl library by Wayoda</h3>
+          <figure>
+  <figcaption>Add below code to LedControl.cpp </figcaption>
+  <pre>
+    <code class = "language-c">
+// To get particular LED status***************************************************************
+int LedControl::getstatus(int addr, int row, int column){
+switch (column) {
+	case 0:
+		column = 7;
+		break;
+	case 1:
+		column = 6;
+		break;
+	case 2:
+		column = 5;
+		break;
+	case 3:
+		column = 4;
+		break;
+	case 4:
+		column = 3;
+		break;
+	case 5:
+		column = 2;
+		break;
+	case 6:
+		column = 1;
+		break;
+	case 7:
+		column = 0;
+		break;
+}
+int new_col=bitRead(status[row],column);
+if (new_col == 1)
+return new_col;
+else if (new_col == 0)
+return new_col;
+}
+
+
+// To check & perform line break task ***************************************************************
+void LedControl::line_break(){
+for(int k=0;k<6;k++){
+if(status[0] == 255 ){
+status[7]=0;
+for (int i=0; i<8; i++){
+status[i] =status[i+1];
+spiTransfer(0, i+1,status[i]);
+      }
+     }
+else{}
+  }
+}
+
+
+// To check & perform Gameover task ***************************************************************
+void LedControl::gameover(){
+for (int k=1; k<9; k++){
+int a=0;
+int p=0;
+for (int i=0; i<8; i++){
+a=getstatus(0,i,k);
+p=p+a;
+}
+Serial.println(p);
+ if(p == 8 )
+{
+k=10;
+Serial.println("   GameOver   ");
+shutdown(0,true);
+delay(200);
+shutdown(0,false);
+delay(200);
+shutdown(0,true);
+delay(200);
+shutdown(0,false);
+delay(200);
+shutdown(0,true);
+delay(10000);
+}}
+}
+    </code>
+  </pre>
+</figure>
+
+          <br /><br />
+
+          <figure>
+  <figcaption>Add below code to LedControl.h under class LedControl Public member</figcaption>
+  <pre>
+    <code class = "language-c">
+
+      int getstatus(int addr, int row, int column);
+      void line_break();
+      void gameover();
+    </code>
+  </pre>
+</figure>
+
+
+
+          <br /><br /><br /><br /><br /><br /><br /><br />
+
+          <h3 class="mb-5">Arduino Code</h3>
+          <figure>
+  <figcaption>TETRIS using ARDUINO & MAX7219 8x8 LED MATRIX</figcaption>
+  <pre>
+    <code class = "language-Arduino">
+
+//TETRIS by GEEKEE CEEBEE
+/*    THE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ *    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ *    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ *    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ *    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ *    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ *    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ *    OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+
+#include < LedControl.h >
+
+//We always have to include the library
+#include "LedControl.h"
+
+
+//***************Global Variables and Definitions******************************************
+LedControl lc = LedControl(12, 11, 10, 4);
+const int SW_pin = 2;         // digital pin connected to SW
+const int X_pin = A0;         // analog pin connected to VRx
+const int Y_pin = A1;
+float r = 7.0;               // row input
+int c = 3;                   // column input
+int add = 0;                 // address input
+int add_prev = 1000;
+int r_prev = 1000;
+int c_prev = 1000;
+int ro = 0;                  // to set block orientation
+int ro_prev;
+int c2;
+float r2;
+int check1, check2, check3, check4;
+int left_check1, left_check2, left_check3, left_check4;
+int right_check1, right_check2, right_check3, right_check4;
+int block = 0;
+
+//*******************Right Translate Functions**************************
+int Right_translate( int c1, boolean state1) {
+  int X = analogRead(X_pin);
+  if (state1 == true && X < 200) {
+    return c--;
+  }
+  else if (state1 == false && X < 200) {
+    return c;
+  }
+}
+
+
+//*******************Left Translate Functions**************************
+int Left_translate( int c1, boolean state1) {
+  int X = analogRead(X_pin);
+  if (state1 == true) {
+    if (X > 800) {
+      return  c++;
+    }
+  }
+  else if (state1 == false) {
+    if (X > 800) {
+      return   c;
+    }
+  }
+}
+
+
+//*******************Down Translate Functions**************************
+float Down_translate( float r1, boolean state1) {
+  int Y = analogRead(Y_pin);
+  //Serial.print(" Y_pin: ");
+  //        Serial.print(Y);
+  if (state1 == true ) {
+    if (Y > 800) {
+      return r--;
+    }
+  }
+  else if (state1 == false) {
+    if (Y > 800) {
+      return   r;
+    }
+  }
+}
+
+
+
+
+
+
+//************************************  I BLOCK FUNCTION  **************************************
+void I_block(int add, float r, int c, int ro) {
+
+  switch (ro) {
+
+    case 0:                                                   // Horizontal Orientation
+      if (ro_prev == 1) {
+        lc.setLed(add_prev, r_prev, c_prev, false);
+        lc.setLed(add_prev, r_prev - 1, c_prev, false);
+        lc.setLed(add_prev, r_prev - 2, c_prev, false);
+        lc.setLed(add_prev, r_prev - 3, c_prev, false);
+      }
+
+
+      lc.setLed(add_prev, r_prev, c_prev, false);
+      lc.setLed(add_prev, r_prev, c_prev - 1, false);
+      lc.setLed(add_prev, r_prev, c_prev - 2, false);
+      lc.setLed(add_prev, r_prev, c_prev - 3, false);
+
+      lc.setLed(add, r, c, true);
+      lc.setLed(add, r, c - 1, true);
+      lc.setLed(add, r, c - 2, true);
+      lc.setLed(add, r, c - 3, true);
+
+      check1 = lc.getstatus(add, r - 1, c);
+      check2 = lc.getstatus(add, r - 1, c - 1);
+      check3 = lc.getstatus(add, r - 1, c - 2);
+      check4 = lc.getstatus(add, r - 1, c - 3);
+      left_check1 = lc.getstatus(add, r , c + 1);
+      right_check1 = lc.getstatus(add, r , c - 4);
+
+      add_prev = add;
+      r_prev = r;
+      c_prev = c;
+      ro_prev = ro;
+
+
+      break;
+
+    case 1:                                                            // Vertical Orientation
+      if (ro_prev == 0) {
+        lc.setLed(add_prev, r_prev, c_prev, false);
+        lc.setLed(add_prev, r_prev, c_prev - 1, false);
+        lc.setLed(add_prev, r_prev, c_prev - 2, false);
+        lc.setLed(add_prev, r_prev, c_prev - 3, false);
+      }
+
+      lc.setLed(add_prev, r_prev, c_prev, false);
+      lc.setLed(add_prev, r_prev - 1, c_prev, false);
+      lc.setLed(add_prev, r_prev - 2, c_prev, false);
+      lc.setLed(add_prev, r_prev - 3, c_prev, false);
+
+      lc.setLed(add, r, c, true);
+      lc.setLed(add, r - 1, c, true);
+      lc.setLed(add, r - 2, c, true);
+      lc.setLed(add, r - 3, c, true);
+
+      check1 = lc.getstatus(add, r - 4, c);
+      left_check1 = lc.getstatus(add, r , c + 1);
+
+      right_check1 = lc.getstatus(add, r , c - 1);
+
+
+      add_prev = add;
+      r_prev = r;
+      c_prev = c;
+      ro_prev = ro;
+
+      break;
+
+  }
+
+}
+
+//************************************  S BLOCK FUNCTION  **************************************
+void S_block(int add, float r, int c, int ro) {
+
+  switch (ro) {
+
+    case 0:                                                             // Horizontal Orientation
+      if (ro_prev == 1) {
+
+        lc.setLed(add_prev, r_prev, c_prev, false);
+        lc.setLed(add_prev, r_prev, c_prev - 1, false);
+        lc.setLed(add_prev, r_prev - 1, c_prev - 1, false);
+        lc.setLed(add_prev, r_prev + 1, c_prev, false);
+
+      }
+      lc.setLed(add_prev, r_prev, c_prev, false);
+      lc.setLed(add_prev, r_prev, c_prev - 1, false);
+      lc.setLed(add_prev, r_prev - 1, c_prev, false);
+      lc.setLed(add_prev, r_prev - 1, c_prev + 1, false);
+
+
+      lc.setLed(add, r, c, true);
+      lc.setLed(add, r, c - 1, true);
+      lc.setLed(add, r - 1, c, true);
+      lc.setLed(add, r - 1, c + 1, true);
+
+      check1 = lc.getstatus(add, r - 2, c);
+      check2 = lc.getstatus(add, r - 2, c + 1);
+      check3 = lc.getstatus(add, r - 1, c - 1);
+      left_check1 = lc.getstatus(add, r , c + 2);
+      right_check1 = lc.getstatus(add, r , c - 2);
+
+
+      add_prev = add;
+      r_prev = r;
+      c_prev = c;
+      ro_prev = ro;
+
+      break;
+
+    case 1:                                                               // Vertical Orientation
+      if (ro_prev == 0) {
+        lc.setLed(add_prev, r_prev, c_prev, false);
+        lc.setLed(add_prev, r_prev, c_prev - 1, false);
+        lc.setLed(add_prev, r_prev - 1, c_prev, false);
+        lc.setLed(add_prev, r_prev - 1, c_prev + 1, false);
+      }
+
+      lc.setLed(add_prev, r_prev, c_prev, false);
+      lc.setLed(add_prev, r_prev, c_prev - 1, false);
+      lc.setLed(add_prev, r_prev - 1, c_prev - 1, false);
+      lc.setLed(add_prev, r_prev + 1, c_prev, false);
+
+      lc.setLed(add, r, c, true);
+      lc.setLed(add, r, c - 1, true);
+      lc.setLed(add, r - 1, c - 1, true);
+      lc.setLed(add, r + 1, c, true);
+
+      check1 = lc.getstatus(add, r - 1, c);
+      check2 = lc.getstatus(add, r - 2, c - 1);
+      left_check1 = lc.getstatus(add, r , c + 1);
+      right_check1 = lc.getstatus(add, r , c - 2);
+
+      add_prev = add;
+      r_prev = r;
+      c_prev = c;
+      ro_prev = ro;
+      break;
+
+  }
+
+}
+
+
+
+
+//****************************************  MAIN SETUP  ****************************
+void setup() {
+  //we have already set the number of devices when we created the LedControl
+  int devices = lc.getDeviceCount();
+  //lc.line_break();
+ // int che = lc.getstatus(add, r, c);
+  pinMode(SW_pin, INPUT);
+  digitalWrite(SW_pin, HIGH);
+  randomSeed(analogRead(0));
+  Serial.begin(9600);
+  //we have to init all devices in a loop
+  for (int address = 0; address < devices; address++) {
+    /*The MAX72XX is in power-saving mode on startup*/
+    lc.shutdown(address, false);
+    /* Set the brightness to a medium values */
+    lc.setIntensity(address, 8);
+    /* and clear the display */
+    lc.clearDisplay(address);
+  }
+
+}
+
+
+//*****************************  MAIN LOOP FUNCTION  ****************************
+void loop() {
+  block = random(-1, 2);         // Block selection by randomly picking value between 0 and 1
+  r = 8;                        // Starting row for new block
+  c = 3;                        // starting column for new block
+  add = 0;                        // address is 0 if using only one 8x8 LED module
+
+  switch (block) {
+
+    //***********************   I_block Horizontal  ****************
+    case 1:
+      do {
+        //  int X = analogRead(X_pin);
+        //        int Y = analogRead(Y_pin);
+        int Rot = digitalRead(SW_pin);
+        if (Rot == LOW) {
+          ro++;
+          if (ro == 2) {
+            ro = 0;
+          }
+        }
+
+
+        if (c >= -1 && c <= 8) {
+
+          switch (ro) {
+            case 0:
+              if (c == 2 || c == 1 || c == 0) {
+                c = 3;
+              }
+              if (c == 8) {
+                c = 7;
+              }
+              if (left_check1 == 1 && right_check1 == 0) {
+                c = Right_translate(c, true);
+                Left_translate(c, false);
+                Down_translate(r, true);
+              }
+              else if (left_check1 == 0 && right_check1 == 1) {
+                c = Right_translate(c, false);
+                Left_translate(c, true);
+                Down_translate(r, true);
+              }
+              else if (left_check1 == 1 && right_check1 == 1) {
+                c = Right_translate(c, false);
+                Left_translate(c, false);
+                Down_translate(r, true);
+              }
+
+
+              else if (left_check1 == 0 && right_check1 == 0) {
+                c2 = Right_translate(c, true);
+                c2 = Left_translate(c, true);
+                r2 = Down_translate(r, true);
+              }
+
+
+              break;
+
+            //***************************  I block_Vertical  **************
+
+            case 1:
+              if (c == -1) {
+                c = 0;
+              }
+              if (c == 8) {
+                c = 7;
+              }
+
+              if (left_check1 == 1 && right_check1 == 0) {
+                c = Right_translate(c, true);
+                Left_translate(c, false);
+                Down_translate(r, true);
+              }
+              else if (left_check1 == 0 && right_check1 == 1) {
+                c = Right_translate(c, false);
+                Left_translate(c, true);
+                Down_translate(r, true);
+              }
+              else if (left_check1 == 1 && right_check1 == 1) {
+                c = Right_translate(c, false);
+                Left_translate(c, false);
+                Down_translate(r, true);
+              }
+
+
+              else if (left_check1 == 0 && right_check1 == 0) {
+                c2 = Right_translate(c, true);
+                c2 = Left_translate(c, true);
+                r2 = Down_translate(r, true);
+              }
+
+
+              break;
+
+
+          }
+
+        }
+        r = r - 0.125;
+        I_block(add, r, c, ro);
+        if (check1 == 1 || check2 == 1 || check3 == 1) {
+          r = 0.8;
+        }
+        delay(225);
+      } while (r > 0.9 );
+      add_prev = 100;
+      r_prev = 100;
+      c_prev = 100;
+      break;
+
+    //*****************S_Block case*****************
+
+    case 0:
+      do {
+
+        int Rot = digitalRead(SW_pin);
+        if (Rot == LOW) {
+          ro++;
+          if (ro == 2) {
+            ro = 0;
+          }
+        }
+
+
+        if (c >= 0 && c <= 7) {
+
+          switch (ro) {
+            case 0:
+              if ( c == 0) {
+                c = 1;
+              }
+              if (c == 7) {
+                c = 6;
+              }
+                            if (left_check1 == 1 && right_check1 == 0) {
+                              c = Right_translate(c, true);
+                              Left_translate(c, false);
+                              Down_translate(r, true);
+                            }
+                            else if (left_check1 == 0 && right_check1 == 1) {
+                              c = Right_translate(c, false);
+                              Left_translate(c, true);
+                              Down_translate(r, true);
+                            }
+                            else if (left_check1 == 1 && right_check1 == 1) {
+                              c = Right_translate(c, false);
+                              Left_translate(c, false);
+                              Down_translate(r, true);
+                            }
+
+
+                            else if (left_check1 == 0 && right_check1 == 0) {
+              c2 = Right_translate(c, true);
+              c2 = Left_translate(c, true);
+              r2 = Down_translate(r, true);
+                            }
+
+
+              break;
+
+            //***************************S block**************
+
+            case 1:
+              if (c == -1) {
+                c = 0;
+              }
+              if (c == 8) {
+                c = 7;
+              }
+             if (left_check1 == 1 && right_check1 == 0) {
+                              c = Right_translate(c, true);
+                              Left_translate(c, false);
+                              Down_translate(r, true);
+                            }
+                            else if (left_check1 == 0 && right_check1 == 1) {
+                              c = Right_translate(c, false);
+                              Left_translate(c, true);
+                              Down_translate(r, true);
+                            }
+                            else if (left_check1 == 1 && right_check1 == 1) {
+                              c = Right_translate(c, false);
+                              Left_translate(c, false);
+                              Down_translate(r, true);
+                            }
+
+
+                            else if (left_check1 == 0 && right_check1 == 0) {
+              c2 = Right_translate(c, true);
+              c2 = Left_translate(c, true);
+              r2 = Down_translate(r, true);
+                            }
+
+              break;
+
+
+          }
+
+
+
+        }
+        r = r - 0.125;
+        S_block(add, r, c, ro);
+        if (check1 == 1 || check2 == 1 || check3 == 1) {
+          r = 1.8;
+        }
+        delay(225);
+      } while (r > 1.9 );
+      add_prev = 100;
+      r_prev = 100;
+      c_prev = 100;
+      break;
+
+
+  }
+
+
+
+  lc.line_break();                                       // Line Break function called from LED control libraries
+  lc.gameover();                                        // Game Over function called from LED control libraries
+
+
+}
+
+
+
+    </code>
+  </pre>
+</figure>
+
+          </ul>
+        </div>
+      </section>
+<!--
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+        <div class="my-auto">
+          <h2 class="mb-5">Projects</h2>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3> <a class="mb-0"  href="PID Controller.html" >PID Controller for DC Motor </a> </h3>
+              <div class="subheading mb-3">Arduino Project</div>
+              <p>PID Controller for DC Motor </p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary"></span>
+            </div>
+          </div>
+
+          <!-- <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Web Developer</h3>
+              <div class="subheading mb-3">Intelitec Solutions</div>
+              <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">December 2011 - March 2013</span>
+            </div>
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Junior Web Designer</h3>
+              <div class="subheading mb-3">Shout! Media Productions</div>
+              <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">July 2010 - December 2011</span>
+            </div>
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Web Design Intern</h3>
+              <div class="subheading mb-3">Shout! Media Productions</div>
+              <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">September 2008 - June 2010</span>
+            </div>
+          </div>
+
+        </div>-->
+<!--
+      </section>
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
+        <div class="my-auto">
+          <h2 class="mb-5">Tutorial</h2>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Finite Difference Method in Matlab</h3>
+              <div class="subheading mb-3">Solve Diff Eq. using Discrete Time</div>
+              <div>....</div>
+              <p>...</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary"></span>
+            </div>
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Finite Difference Method in Python</h3>
+              <div class="subheading mb-3">Solve Diff Eq. using Discrete Time</div>
+              <p>...</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary"></span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+        <div class="my-auto">
+          <h2 class="mb-5">Skills</h2>
+
+          <!-- <div class="subheading mb-3"></div>
+          <ul class="list-inline list-icons">
+            <li class="list-inline-item">
+              <i class="devicons devicons-html5"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-css3"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-javascript"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-jquery"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-sass"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-less"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-bootstrap"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-wordpress"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-grunt"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-gulp"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-npm"></i>
+            </li>
+          </ul> -->
+
+<!--
+          <ul class="fa-ul mb-0">
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Mechanical Design- Solidworks CAD, Prototyping, Machining </li>
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Mechatronics- Arduino, Raspberry Pi ARM, Matlab</li>
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Programming- C++, Python</li>
+            <li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!--<section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
+        <div class="my-auto">
+          <h2 class="mb-5">Interests</h2>
+          <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skiier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
+          <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technolgy advancements in the front-end web development world.</p>
+        </div>
+      </section>
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
+        <div class="my-auto">
+          <h2 class="mb-5">Awards &amp; Certifications</h2>
+          <ul class="fa-ul mb-0">
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              Google Analytics Certified Developer</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              Mobile Web Specialist - Google Certification</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              1<sup>st</sup>
+              Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              1<sup>st</sup>
+              Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              2<sup>nd</sup>
+              Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
+            <li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              1<sup>st</sup>
+              Place - James Buchanan High School - Hackathon 2006</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              3<sup>rd</sup>
+              Place - James Buchanan High School - Hackathon 2005</li>
+          </ul>
+        </div>
+      </section>-->
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+<script src="js/prism.js"></script>
+
+  </body>
+
+</html>
