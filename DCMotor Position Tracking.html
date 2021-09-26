@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154911146-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-154911146-1');
+</script>
+
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GeeKee CeeBee - PID for DC Motor Position Control using Rotary Potentiometer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+    <link href="css/prism.css" rel="stylesheet" />
+  </head>
+<script data-ad-client="ca-pub-5014618487406640" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">GeeKee CeeBee</span>
+        <span class="d-none d-lg-block">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/logo.jpg" alt="">
+        </span>
+      </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#experience">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#education">Tutorial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+          </li>
+
+
+
+        </ul>
+      </div>-->
+
+      <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=1111222204-20&marketplace=amazon&region=US&placement=B0792SBB5T&asins=B0792SBB5T&linkId=465deb2767b787ebdb64e6e3fd809a2b&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff">
+    </iframe>
+
+    </nav>
+
+    <div class="container-fluid p-0">
+
+      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <div class="my-auto">
+          <h1 class="mb-0">GeeKee
+            <span class="text-primary">CeeBee</span>
+          </h1>
+         <!--  <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
+            <a href="mailto:name@email.com">name@email.com</a>
+          </div>-->
+          <p class="mb-5">Welcome to GeeKee CeeBee's Page: House of Mechatronics</p>
+
+           <h2 class="mb-5">PID for DC Motor Position Control using Rotary Potentiometer</h2>
+
+          <br /><br /><br /><br />
+          <h3 class="mb-5">Step-by-step video</h3>
+          <iframe width="560" height="315" src="https://youtu.be/-P-6bMbQh1E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          <br />
+          <br />
+          <br />
+          <br /><br /><br /><br /><br /><br /><br />
+          <h3 class="mb-5">Schematic</h3>
+
+          <img src="img/DC_Motor_Position_Control_Schematic.png" alt="">
+
+
+          <br /><br /><br /><br /><br /><br /><br /><br />
+
+          <h3 class="mb-5">Arduino Code</h3>
+          <figure>
+  <figcaption>PID for DC Motor Position Control using Rotary Potentiometer</figcaption>
+  <pre>
+    <code class = "language-c">
+//GeeKee CeeBee
+// ************ DEFINITIONS************
+
+int potPin = A3;          // Reference Potentiometer
+int encoder_pot = A2;    // Position Feedback sensor
+
+int val = 0;
+int encoder_val =0;
+float kp = 0.2;
+float ki = 0.00000 ;
+float kd = 2.00;
+float Theta, Theta_d;
+int dt;
+unsigned long t;
+unsigned long t_prev = 0;
+int val_prev =0;
+float e, e_prev = 0, inte, inte_prev = 0;
+float Vmax = 12;
+float Vmin = -12;
+float V = 0.1;
+const byte PWMPin = 6;
+const byte DirPin1 = 7;
+const byte DirPin2 = 8;
+
+
+//***Motor Driver Functions*****
+
+void WriteDriverVoltage(float V, float Vmax) {
+  int PWMval = int(255 * abs(V) / Vmax);
+  if (PWMval > 255) {
+    PWMval = 255;
+  }
+  if (V > 0) {
+    digitalWrite(DirPin1, HIGH);
+    digitalWrite(DirPin2, LOW);
+  }
+  else if (V < 0) {
+    digitalWrite(DirPin1, LOW);
+    digitalWrite(DirPin2, HIGH);
+  }
+  else {
+    digitalWrite(DirPin1, LOW);
+    digitalWrite(DirPin2, LOW);
+  }
+  analogWrite(PWMPin, PWMval);
+
+}
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(DirPin1, OUTPUT);
+  pinMode(DirPin2, OUTPUT);
+
+}
+
+
+void loop() {
+  val = analogRead(potPin);                           // Read V_out from Reference Pot
+  encoder_val =analogRead(encoder_pot);               // Read V_out from Feedback Pot
+  t = millis();
+  dt = (t - t_prev);                                  // Time step
+  Theta = val;                                        // Theta= Actual Angular Position of the Motor
+  Theta_d = encoder_val;                              // Theta_d= Desired Angular Position of the Motor
+
+  e = Theta_d - Theta;                                // Error
+  inte = inte_prev + (dt * (e + e_prev) / 2);         // Integration of Error
+  V = kp * e + ki * inte + (kd * (e - e_prev) / dt) ; // Controlling Function
+
+  if (V > Vmax) {
+      V = Vmax;
+      inte = inte_prev;
+    }
+    if (V < Vmin) {
+      V = Vmin;
+      inte = inte_prev;
+      val_prev= val;
+    }
+  WriteDriverVoltage(V, Vmax);
+  Serial.println(Theta_d); Serial.print(" \t");
+    Serial.print(Theta); Serial.print(" \t ");
+   t_prev = t;
+    inte_prev = inte;
+    e_prev = e;
+    delay(10);
+
+}
+
+
+    </code>
+  </pre>
+</figure>
+
+          </ul>
+        </div>
+      </section>
+<!--
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
+        <div class="my-auto">
+          <h2 class="mb-5">Projects</h2>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3> <a class="mb-0"  href="PID Controller.html" >PID Controller for DC Motor </a> </h3>
+              <div class="subheading mb-3">Arduino Project</div>
+              <p>PID Controller for DC Motor </p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary"></span>
+            </div>
+          </div>
+
+          <!-- <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Web Developer</h3>
+              <div class="subheading mb-3">Intelitec Solutions</div>
+              <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">December 2011 - March 2013</span>
+            </div>
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Junior Web Designer</h3>
+              <div class="subheading mb-3">Shout! Media Productions</div>
+              <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">July 2010 - December 2011</span>
+            </div>
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Web Design Intern</h3>
+              <div class="subheading mb-3">Shout! Media Productions</div>
+              <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">September 2008 - June 2010</span>
+            </div>
+          </div>
+
+        </div>-->
+<!--
+      </section>
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
+        <div class="my-auto">
+          <h2 class="mb-5">Tutorial</h2>
+
+          <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Finite Difference Method in Matlab</h3>
+              <div class="subheading mb-3">Solve Diff Eq. using Discrete Time</div>
+              <div>....</div>
+              <p>...</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary"></span>
+            </div>
+          </div>
+
+          <div class="resume-item d-flex flex-column flex-md-row">
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">Finite Difference Method in Python</h3>
+              <div class="subheading mb-3">Solve Diff Eq. using Discrete Time</div>
+              <p>...</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary"></span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
+        <div class="my-auto">
+          <h2 class="mb-5">Skills</h2>
+
+          <!-- <div class="subheading mb-3"></div>
+          <ul class="list-inline list-icons">
+            <li class="list-inline-item">
+              <i class="devicons devicons-html5"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-css3"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-javascript"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-jquery"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-sass"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-less"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-bootstrap"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-wordpress"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-grunt"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-gulp"></i>
+            </li>
+            <li class="list-inline-item">
+              <i class="devicons devicons-npm"></i>
+            </li>
+          </ul> -->
+
+<!--
+          <ul class="fa-ul mb-0">
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Mechanical Design- Solidworks CAD, Prototyping, Machining </li>
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Mechatronics- Arduino, Raspberry Pi ARM, Matlab</li>
+            <li>
+              <i class="fa-li fa fa-check"></i>
+              Programming- C++, Python</li>
+            <li>
+
+          </ul>
+        </div>
+      </section>
+
+      <!--<section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
+        <div class="my-auto">
+          <h2 class="mb-5">Interests</h2>
+          <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skiier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
+          <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technolgy advancements in the front-end web development world.</p>
+        </div>
+      </section>
+
+      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
+        <div class="my-auto">
+          <h2 class="mb-5">Awards &amp; Certifications</h2>
+          <ul class="fa-ul mb-0">
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              Google Analytics Certified Developer</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              Mobile Web Specialist - Google Certification</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              1<sup>st</sup>
+              Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              1<sup>st</sup>
+              Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              2<sup>nd</sup>
+              Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
+            <li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              1<sup>st</sup>
+              Place - James Buchanan High School - Hackathon 2006</li>
+            <li>
+              <i class="fa-li fa fa-trophy text-warning"></i>
+              3<sup>rd</sup>
+              Place - James Buchanan High School - Hackathon 2005</li>
+          </ul>
+        </div>
+      </section>-->
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+    <script src="js/prism.js"></script>
+  </body>
+
+</html>
