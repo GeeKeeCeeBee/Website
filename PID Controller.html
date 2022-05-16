@@ -102,44 +102,111 @@
         <div class="my-auto">
           <h1 class="mb-0">GeeKee
             <span class="text-primary">CeeBee</span>
+
+
           </h1>
          <!--  <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
             <a href="mailto:name@email.com">name@email.com</a>
           </div>-->
           <p >Welcome to GeeKee CeeBee's Page: House of Mechatronics</p>
           <p>__________________________________________________________________________________________________________________________________</p>
-          <h2 >PID Controller</h2>
 
-          <img src="img/PID_tracking.gif" alt="" align="right" width="450" height="225" style="border:10px solid #bd5d38;border-radius: 2%">
+            <style>
+aside {
+  width: 15%;
+
+  padding-left: 15px;
+  margin-left: 15px;
+  float: right
+  font-style: italic;
+  font-style: bold;
+  background-color: lightgray;
+position: fixed;
+right: 5px;
+
+}
+
+
+div.b {
+  width: 50%;
+  padding-bottom: 30px;
+
+}
+</style>
+
+
+
+
+<aside>
+<p> <h3 >Similar Projects</h3>
+
+ <a class="mb-0"  href="DCMotor Position Tracking.html" >DC Motor Position Control</a>
+</p>
+</aside>
+
+               <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+          <h2 >DC Motor Speed Contol</h2>
+
+          <img src="img/PID_tracking.gif" alt="" align= "Center" width="450" height="225" style="border:10px solid #bd5d38;border-radius: 2%;margin-bottom: 10px">
           <p class="mb-5">
+
             Step by step practical guide to speed and position tracking control of a DC motor using Arduino.<br>
             Formulate PID theory using Numerical Approximation method.<br>
             Write PID code from scratch (w/o using pre-writtern library). <br>
             Demostrate the use of rotary encoders, L298n motor driver, and timer interrupts.
             </p>
 
+              </div>
+          </div>
 
-          <p>__________________________________________________________________________________________________________________________________</p>
+     <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+          <h3 >Components List</h3>
+             <p class="mb-5">
+
+            Arduino Uno<br>
+            DC Motor with Encoder (TS-25GA370)<br>
+            L298N Dual H-brdige Motor Driver<br>
+            DC Power Supply (6-12V)<br>
+            Jumper Wires
+            </p>
+    </div> </div>
+
+
+
+     <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
           <h3 >Step-by-step video guide</h3>
-          <iframe width="900" height="400" src="https://www.youtube.com/embed/QSIksPKndEs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:10px solid #bd5d38;border-radius: 2%"></iframe>
 
+            <div class="b">
+            In this video guide, you will learn how to control speed of any DC motor by controlling the supply voltage. Arduino Uno is used to perform PWM voltage control using the PID controller.
+                     Video covers the encoder implementation, basic PID theory, implementation of Timer Interrupt and External Interrupts, derivation of control law, understanding the discrete methods of calculating
+                     derivative and integration of error. Please watch the whole video for better understanding.
+           </div>
 
+          <iframe width="700" height="400" src="https://www.youtube.com/embed/QSIksPKndEs" frameborder="0" align = "center" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:10px solid #bd5d38;border-radius: 2%"></iframe>
+
+    </div> </div>
           <br /><br />
 
-           <p>__________________________________________________________________________________________________________________________________</p>
+<!--           <p>__________________________________________________________________________________________________________________________________</p>-->
+
+           <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
           <h3 >Wiring Diagram</h3>
           <img src="img/PID_Schematic.png" alt="" align= "Center" width="700" height="600" style=" border:10px solid #bd5d38;border-radius: 2%">
 
-
-         <br /><br /><br />
+</div> </div>
+         <br /><br />
           <p>__________________________________________________________________________________________________________________________________</p>
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
           <h3 >Arduino Code</h3>
           <figure>
   <figcaption>PID Controller for DC Motor Speed Tracking </figcaption>
   <pre>
     <code class = "language-c">
-
-
 //GeeKee CeeBee
 // ************ DEFINITIONS************
 float kp = 0.02;
@@ -327,194 +394,11 @@ ISR(TIMER1_COMPA_vect) {
     </code>
   </pre>
 </figure>
-
-          </ul>
-        </div>
-      </section>
-<!--
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-        <div class="my-auto">
-          <h2 class="mb-5">Projects</h2>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3> <a class="mb-0"  href="PID Controller.html" >PID Controller for DC Motor </a> </h3>
-              <div class="subheading mb-3">Arduino Project</div>
-              <p>PID Controller for DC Motor </p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary"></span>
-            </div>
-          </div>
-
-          <!-- <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Web Developer</h3>
-              <div class="subheading mb-3">Intelitec Solutions</div>
-              <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">December 2011 - March 2013</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Junior Web Designer</h3>
-              <div class="subheading mb-3">Shout! Media Productions</div>
-              <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">July 2010 - December 2011</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Web Design Intern</h3>
-              <div class="subheading mb-3">Shout! Media Productions</div>
-              <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">September 2008 - June 2010</span>
-            </div>
-          </div>
-
-        </div>-->
-<!--
-      </section>
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
-        <div class="my-auto">
-          <h2 class="mb-5">Tutorial</h2>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Finite Difference Method in Matlab</h3>
-              <div class="subheading mb-3">Solve Diff Eq. using Discrete Time</div>
-              <div>....</div>
-              <p>...</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary"></span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Finite Difference Method in Python</h3>
-              <div class="subheading mb-3">Solve Diff Eq. using Discrete Time</div>
-              <p>...</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary"></span>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
-        <div class="my-auto">
-          <h2 class="mb-5">Skills</h2>
-
-          <!-- <div class="subheading mb-3"></div>
-          <ul class="list-inline list-icons">
-            <li class="list-inline-item">
-              <i class="devicons devicons-html5"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-css3"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-javascript"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-jquery"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-sass"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-less"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-bootstrap"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-wordpress"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-grunt"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-gulp"></i>
-            </li>
-            <li class="list-inline-item">
-              <i class="devicons devicons-npm"></i>
-            </li>
-          </ul> -->
-
-<!--
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Mechanical Design- Solidworks CAD, Prototyping, Machining </li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Mechatronics- Arduino, Raspberry Pi ARM, Matlab</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Programming- C++, Python</li>
-            <li>
-
+ </div> </div>
           </ul>
         </div>
       </section>
 
-      <!--<section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
-        <div class="my-auto">
-          <h2 class="mb-5">Interests</h2>
-          <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skiier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
-          <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technolgy advancements in the front-end web development world.</p>
-        </div>
-      </section>
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
-        <div class="my-auto">
-          <h2 class="mb-5">Awards &amp; Certifications</h2>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Google Analytics Certified Developer</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Mobile Web Specialist - Google Certification</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              1<sup>st</sup>
-              Place - University of Colorado Boulder - Emerging Tech Competition 2009</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              1<sup>st</sup>
-              Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              2<sup>nd</sup>
-              Place - University of Colorado Boulder - Emerging Tech Competition 2008</li>
-            <li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              1<sup>st</sup>
-              Place - James Buchanan High School - Hackathon 2006</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              3<sup>rd</sup>
-              Place - James Buchanan High School - Hackathon 2005</li>
-          </ul>
-        </div>
-      </section>-->
 
         <footer class="page-footer font-small #040245 fixed-bottom">
 
