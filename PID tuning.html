@@ -200,7 +200,7 @@ div.b {
            <div class="b">
             Let’s start proportional gain. Try Kp =1 and we can see the motor overshoots the target position and continues to oscillate. Need to tune Kp gain first.
            </div>
-          <img src="img/1.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning1.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 
 </div> </div>
          <br />
@@ -212,7 +212,7 @@ div.b {
            Let’s reduce the Kp term to Kp=0.5. We see less oscillations after the motor overshoots the target. We are on the right path.
                          Next step is to further reduce Kp gain.
            </div>
-          <img src="img/2.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning2.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 
 </div> </div>
          <br />
@@ -223,7 +223,7 @@ div.b {
             Next plot is with Kp=0.25. We have reduced the number of oscillations, but the motor is still overshooting the target position.
                At this point we can further reduce Kp gain or add Kd term to incorporate some damping in the system response to reduce the overshoot.
            </div>
-          <img src="img/3.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning3.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 
 
 </div> </div>
@@ -234,7 +234,7 @@ div.b {
                      <div class="b">
             Next plot is with some added Kd gain, Kd = 10. And, we have dampened the system a little bit but not enough. As we can still observe overshoot.
            </div>
-          <img src="img/4.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning4.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 
 </div> </div>
          <br />
@@ -245,7 +245,7 @@ div.b {
             Next plot is with Kd=50. We can clearly see that the system response has now become overdamped. As the motor never reaches the target position.
                          We need to reduce the Kd gain to get system to critically damped state.
            </div>
-          <img src="img/5.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning5.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 </div> </div>
          <br />
                                        <div class="resume-item d-flex flex-column flex-md-row mb-5">
@@ -254,7 +254,7 @@ div.b {
             Next plot is with Kd= 30, and we can see we are very close to the target position.
                          However, system response is still slightly overdamped. So, let’s reduce Kd term even more.
            </div>
-          <img src="img/6.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning6.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 
 </div> </div>
          <br />
@@ -265,7 +265,7 @@ div.b {
             Next plot is with Kd=24. And now we can see this system is now tuned.
                          There’s no overshoot or steady state error. Our system is now stable
            </div>
-          <img src="img/7.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning7.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 
 </div> </div>
          <br />
@@ -278,7 +278,7 @@ div.b {
                          We can simply add Ki term to see how this will make our system unstable. Let’s try Ki=0.1 just for fun.
  </div>
 
-          <img src="img/8.png" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
+          <img src="img/Tuning8.PNG" alt="" align= "Center" width="700" height="400" style=" border:10px solid #bd5d38;border-radius: 2%">
 </div></div>
  <br />
 
