@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-154911146-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-154911146-1');
+</script>
+<script data-ad-client="ca-pub-5014618487406640" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5014618487406640"
+     crossorigin="anonymous"></script>
+    <title>Custom and Higher PWM Output Frequencies</title>
+    <meta charset="utf-8">
+    <meta name = "description" content = "Custom and Higher PWM Output Frequencies on Arduino Duty Cycle"  >
+    <meta name = "keywords" content="Motor speed control, Arduino PWM output frequencies, PWM Duty cycle, DC motor,
+                                        PWM beginners , Fast PWM Mode, Phase Correct PWM Mode, Phase and Frequency Correct PWM mode">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="author" content="Geekee Ceebee ceebee1108@gmail.com">
+
+
+    <title>GeeKee CeeBee - PWM OUTPUT FREQUENCIES</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/resume.min.css" rel="stylesheet">
+    <link href="css/prism.css" rel="stylesheet" />
+  </head>
+<script data-ad-client="ca-pub-5014618487406640" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="index.html">
+        <span class="d-block d-lg-none">GeeKee CeeBee</span>
+        <span class="d-none d-lg-block">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/logo.webp" alt="">
+          <h3> <a class="text-dark" class="mb-0"  href="index.html" >HOME </a> </h3>
+
+
+        </span>
+      </a>
+
+
+
+
+        </ul>
+      </div>
+    </nav>
+
+
+
+    <div class="container-fluid p-0">
+
+      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <div class="my-auto">
+          <h1 class="mb-0">GeeKee
+            <span class="text-primary">CeeBee</span>
+
+
+          </h1>
+
+          <p >Welcome to GeeKee CeeBee's Page: House of Mechatronics and Embedded Projects & Lessons.<br />
+            Contact Email: <a class="mb-0"  href="" >Ceebee1108@gmail.com </a><br />
+              Follow me on <a class="mb-0"  href="https://www.youtube.com/c/GeeKeeCeeBee" >Youtube </a><br />
+
+
+__________________________________________________________________________________________________________________________________</p>
+
+            <style>
+aside {
+  width: 15%;
+
+  padding-left: 15px;
+  margin-left: 15px;
+  float: right
+  font-style: italic;
+  font-style: bold;
+  background-color: lightgray;
+position: fixed;
+right: 5px;
+
+}
+
+
+div.b {
+  width: 50%;
+  padding-bottom: 30px;
+
+}
+</style>
+
+
+
+
+<aside>
+<p> <h3 >Similar Projects</h3>
+
+ <a class="mb-0"  href="DCMotor Position Tracking.html" ><u>1. DC Motor Position Control</u></a><br />
+     <a class="mb-0"  href="PID Controller.html" ><u>1. DC Motor Speed Control</u></a><br />
+    <a class="mb-0"  href="Dual_Encoder.html" ><u>2. Anti-Backlash Motor Control </u> </a><br />
+     <a class="mb-0"  href="index.html" ><u> More... </u></a>
+</p>
+</aside>
+
+               <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+          <h2 >PWM Output Frequencies Configuration</h2>
+
+          <img src="img/PWM_Output.gif" alt="" align= "Center" width="450" height="225" style="border:10px solid #bd5d38;border-radius: 2%;margin-bottom: 10px">
+          <div class="b">
+
+            Step by step practical guide to configuring higher and user defined PWM output frequency on Arduino.
+            Understand how microcontrollers generate PWM output signals on fundamental level
+            Configure 8bit PWM timer for higher preset PWM output frequencies.
+            Configure 16bit PWM timer for user defined higher PWM output frequencies.
+            Demonstrate the concept using PWM controlled DC motor example.<br>
+              Disclaimer: The code and other information on this project are provided on "AS IS" basis with no warranty. Please follow best practices and assess
+              your own potential risks for this project.
+
+            </div>
+
+
+
+
+          <h3 >Components List</h3>
+             <p class="mb-5">
+
+            Arduino Uno (<a class="mb-0"  href="https://amzn.to/3aPaCQK">Affiliate Link</a>)<br>
+             or Arduino Nano (<a class="mb-0"  href="https://amzn.to/3aPaCQK">Affiliate Link</a>)<br>
+            DC Motor with Optical Rotary Encoder (<a class="mb-0"  href="https://amzn.to/3cz5b9j">TS-25GA370</a>)<br>
+            L298N Dual H-bridge Motor Driver (<a class="mb-0"  href="https://amzn.to/3B3Wu0F">Affiliate Link</a>)<br>
+            DC Power Supply (6-12V) (<a class="mb-0"  href="https://amzn.to/3aOTYkr">Affiliate Link</a>)<br>
+            Jumper Wires and Breadboard (<a class="mb-0"  href="https://amzn.to/3oeCzEz">Affiliate Link</a>)
+            </p>
+
+              </div>
+          </div>
+
+               <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+          <h3 >Step-by-step video guide</h3>
+
+            <div class="b">
+            In this video guide, you will learn how to configure higher or custom PWM output frequencies on Arduino . Arduino Nano is used to perform PWM voltage control at higher PWM output frequencies.
+                     Video covers the fundamentals of PWM signal generation by microcontrollers and manipulating PWM registers to get desired output frequencies.
+                      Please watch the whole video for better understanding.
+           </div>
+
+          <iframe width="450" height="300" src="https://www.youtube.com/embed/unEtAkq137Y" frameborder="0" align = "center" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:10px solid #bd5d38;border-radius: 2%"></iframe>
+
+                </div>
+          </div>
+
+                  <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+
+          <h3 >Wiring Diagram</h3>
+                        <div class="b">
+            Below is the wiring diagram for the components used in this project.
+                            Example1 uses PWM pin5 with 8but PWM timer.
+                            Example2 uses PWM pin9 with 16bit PWM timer. Pin7 is used to set motor direction.
+                            Make sure there's a common ground between the motor driver, arduino and external power supply.
+           </div>
+
+          <img src="img/Schematic_PWM_Out.webp" alt="" align= "Center" width="450" height="350" style=" border:10px solid #bd5d38;border-radius: 2%">
+<br /><br /><br /><br />
+ <img src="img/ex1.webp" alt="" align= "Center" width="450" height="250" style=" border:10px solid #bd5d38;border-radius: 2%">
+
+
+         <br /><br />  <br /><br />
+
+
+ <img src="img/ex2.webp" alt="" align= "Center" width="450" height="250" style=" border:10px solid #bd5d38;border-radius: 2%">
+
+
+         <br /><br />
+              </div>
+    </div> <br /><br />
+          <p>__________________________________________________________________________________________________________________________________</p>
+            <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            <div class="resume-content mr-auto">
+          <h3 >Arduino Code</h3>
+          <figure>
+  <figcaption>Example1: Preset higher output frequency using 8bit PWM timer (Phase Correct PWM Mode)</figcaption>
+  <pre>
+    <code class = "language-c">
+//GeeKee CeeBee
+//Phase Correct PWM Mode
+void setup() {
+
+ pinMode(5, OUTPUT); // PWM Output pin (aka. OC0B)
+ pinMode(7, OUTPUT); // Motor direction pin
+ pinMode(A5,INPUT);  // Analog read pin for potentiometer
+ digitalWrite(7,HIGH); // Set it High to configure direction for the motor driver
+
+OCR0B =128; //reference signal
+
+//Configure PWM Mode
+TCCR0A = (1 << COM0B1) | (1 << COM0B0) | (1<< WGM00);
+TCCR0B = (1<< CS00);
+    }
+
+void loop() {
+  int pot = map(analogRead(A5),0,1023,0,255);
+  OCR0B = pot;
+}
+    </code>  </pre></figure>
+
+<br /><br />
+             <figure>
+  <figcaption>Example2: User defined output frequency using 16bit PWM timer (Phase and Frequency Correct PWM Mode)</figcaption>
+  <pre> <code class = "language-c">
+//GeeKee CeeBee
+//Phase and Frequency Correct PWM Mode
+void setup() {
+ICR1 = 400; // TOP Signal
+pinMode(9, OUTPUT);             // PWM Output pin (aka. OC1A)
+pinMode(7, OUTPUT);             // Motor direction pin
+pinMode(A5,INPUT);              // Analog read pin for potentiometer
+digitalWrite(7,HIGH);           // Set it High to configure direction for the motor driver
+OCR1A = 200;                    // reference signal ( should be less than Top (ICR1))
+
+// Configure PWM Mode
+TCCR1A = (1 << COM1A1)  ;
+TCCR1B =  (1<< CS10)| (1<< WGM13);
+
+}
+
+void loop() {
+int pot = map(analogRead(A5),0,1023,0,400);
+OCR1A = pot;                // For variable duty cycle
+}
+
+    </code>
+  </pre>
+</figure>
+
+
+
+ </div> </div>
+
+
+          </ul>
+        </div>
+
+      </section>
+
+
+        <footer class="page-footer font-small #040245 fixed-bottom">
+
+  <!-- Copyright -->
+
+  <div class="footer-copyright text-right py-3">
+
+      <h3 class="font-weight-bold deep-orange-lighter-hover mb-3">Consider Supporting Me </h3>
+
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+<input type="hidden" name="hosted_button_id" value="FFXV3ZURVMFGA" />
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
+
+<!--    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>-->
+
+  <!-- Copyright -->
+ </div>
+</footer>
+
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2023 Copyright:
+    <a href="http://GeekeeCeebee.com/"> GeekeeCeebee.com,</a>
+      <a href="http://GeekeeCeebee.com/privacy.html"> Privacy Policy</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/resume.min.js"></script>
+    <script src="js/prism.js"></script>
+<!--         <script type="text/javascript"> var infolinks_pid = 3354734; var infolinks_wsid = 0; </script>
+    <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script> -->
+
+  </body>
+
+</html>
